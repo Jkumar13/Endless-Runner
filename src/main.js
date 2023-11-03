@@ -8,16 +8,16 @@ let config = {
     type: Phaser.AUTO,
     width: 1280,
     height: 720,
-    backgroundColor: '#d5d5d5',
+    backgroundColor: '#797979',
     physics: {
         default: 'arcade',
         arcade: {
             debug: false
         }
     },
-    scene: [ Play ]
+    scene: [ Menu, Play, Restart ]
 }
-let keyRIGHT, keyUP, keyDOWN, mouse, camera
+let keyRIGHT, keyUP, keyDOWN, mouse, camera, keySPACE
 let game = new Phaser.Game(config)
 
 let { width, height } = game.config
