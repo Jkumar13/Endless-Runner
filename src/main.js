@@ -1,6 +1,8 @@
 // ENDLESS RUNNER
 // Name: Jay Kumar
+// Title: Technicolor Escape
 // Date: 11/6/23
+// Hours Spent: A Lot (30 hours)
 
 // Technical tilt: I utilized the (time, delta) arguments in the Update() method in the following ways:
     // To activate certain "events" based on how far into the game the player is.
