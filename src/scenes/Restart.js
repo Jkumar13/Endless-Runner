@@ -5,17 +5,16 @@ class Restart extends Phaser.Scene {
     
     preload() {
         // load audio
-        this.load.audio('sfx_select', './assets/blip_select12.wav');
-        this.load.audio('sfx_explosion', './assets/explosion38.wav');
-        this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+
+
     }
 
     create() {
         let restartConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            fontFamily: 'Fantasy',
+            fontSize: '56px',
+            //backgroundColor: '#F3B141',
+            color: '#ffffff',
             align: 'right',
             padding: {
             top: 5,
@@ -23,36 +22,38 @@ class Restart extends Phaser.Scene {
             },
             fixedWidth: 0
         }
+        this.background = this.add.tileSprite(0, 0, 1280, 720, 'background').setOrigin(0, 0).setScale(2)
+        
 
         // show restart text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Ur bad', restartConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2, 'MOUSE-CLICK to restart', restartConfig).setOrigin(0.5);
-        restartConfig.backgroundColor = '#00ff00';
+        restartConfig.fontSize = '56px';
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding*2, 'GAME OVER', restartConfig).setOrigin(0.5);
+        this.randomizedText = ["Good effort!", "Not bad!", "So close!", "Watch out for those spikes!", "Try again!"]
+        this.randVar = Phaser.Math.Between(0, 4)
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize + borderPadding * 4, this.randomizedText[this.randVar], restartConfig).setOrigin(0.5);
+        restartConfig.fontSize = '28px';
         restartConfig.color = '#000';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Placeholder text for other stuff idk', restartConfig).setOrigin(0.5);
+        restartConfig.backgroundColor = '#ffffff';
+
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding * 8, 'MOUSE-CLICK to restart', restartConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding * 12, 'SPACE to return to the menu', restartConfig).setOrigin(0.5);
         // // define keys
         // keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         // keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        mouse = this.input.mousePointer;
+
     }
     update() {
+        //this.background.tilePositionX += 3
+
         if (mouse.isDown) {
-            // easy mode
-            
-            game.settings = {
-                spaceshipSpeed: 3,
-                gameTimer: 60000    
-            }
-            // this.sound.play('sfx_select');
+            this.sound.play('StartSound', {volume: 0.075});
             this.scene.start('playScene');    
         }
-        if (mouse.isDown) {
-            // hard mode
-            game.settings = {
-                spaceshipSpeed: 4,
-                gameTimer: 45000    
-            }
-            // this.sound.play('sfx_select');
-            this.scene.start('playScene');    
+        if (keySPACE.isDown) {
+            this.sound.play('StartSound', {volume: 0.075});
+            this.scene.start('menuScene');    
         }
     }
 }

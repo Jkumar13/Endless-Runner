@@ -1,6 +1,6 @@
-// Exercise 02: RNGolf
+// ENDLESS RUNNER
 // Name: Jay Kumar
-// Date: 10/27/23
+// Date: 11/6/23
 
 'use strict'
 
@@ -15,7 +15,7 @@ let config = {
             debug: false
         }
     },
-    scene: [ Menu, Play, Restart ]
+    scene: [ Menu, Credits, Play, Restart ]
 }
 let keyRIGHT, keyUP, keyDOWN, mouse, camera, keySPACE
 let game = new Phaser.Game(config)

@@ -5,17 +5,18 @@ class Menu extends Phaser.Scene {
     
     preload() {
         // load audio
-        this.load.audio('sfx_select', './assets/blip_select12.wav');
-        this.load.audio('sfx_explosion', './assets/explosion38.wav');
-        this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+        this.load.image('background', './assets/CoolerBG.png');
+        this.load.audio('StartSound', './assets/StartButton.wav');
+
+
     }
 
     create() {
         let menuConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            fontFamily: 'Fantasy',
+            fontSize: '56px',
+            //backgroundColor: '#F3B141',
+            color: '#800080',
             align: 'right',
             padding: {
             top: 5,
@@ -23,41 +24,39 @@ class Menu extends Phaser.Scene {
             },
             fixedWidth: 0
         }
-
+        this.background = this.add.tileSprite(0, 0, 1280, 720, 'background').setOrigin(0, 0).setScale(2)
+        
         // show menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ENDLESS RUNNER TITLE', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2, 'Move the mouse to control player', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#00ff00';
+        menuConfig.fontSize = '112px';
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding*9, 'TECHNICOLOR ESCAPE', menuConfig).setOrigin(0.5);
+        menuConfig.fontSize = '36px';
+        menuConfig.color = '#fff';
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Move the mouse to control the player', menuConfig).setOrigin(0.5);
+        menuConfig.fontSize = '28px';
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize - borderPadding*2, 'Get the gold coins to increase your score and to drive back the STORM!', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Avoid the projectiles and SURVIVE!', menuConfig).setOrigin(0.5);
         menuConfig.color = '#000';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Get the gold coins to increase score', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding*4, 'Avoid the world bounds and the projectiles!', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding*10, 'Press SPACE to start game', menuConfig).setOrigin(0.5);
+        menuConfig.backgroundColor = '#ffffff';
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding*7, 'Press SPACE to START', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding*12, 'Press -> for CREDITS', menuConfig).setOrigin(0.5);
+
         // // define keys
-        // keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        // keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         mouse = this.input.mousePointer;
 
     }
     update() {
         if (keySPACE.isDown) {
-            // easy mode
-            
-            game.settings = {
-                spaceshipSpeed: 3,
-                gameTimer: 60000    
-            }
-            // this.sound.play('sfx_select');
+            this.sound.play('StartSound', {volume: 0.075});
             this.scene.start('playScene');    
         }
-        if (keySPACE.isDown) {
-            // hard mode
-            game.settings = {
-                spaceshipSpeed: 4,
-                gameTimer: 45000    
-            }
-            // this.sound.play('sfx_select');
-            this.scene.start('playScene');    
+        if (keyRIGHT.isDown) {
+
+            this.sound.play('StartSound', {volume: 0.075});
+            this.scene.start('creditsScene');    
         }
     }
 }
