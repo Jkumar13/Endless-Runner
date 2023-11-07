@@ -31,13 +31,16 @@ class Menu extends Phaser.Scene {
         this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding*9, 'TECHNICOLOR ESCAPE', menuConfig).setOrigin(0.5);
         menuConfig.fontSize = '36px';
         menuConfig.color = '#fff';
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Move the mouse to control the player', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding*1.5, 'INSTRUCTIONS', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding*1.5, '____________', menuConfig).setOrigin(0.5);
         menuConfig.fontSize = '28px';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize - borderPadding*2, 'Get the gold coins to increase your score and to drive back the STORM!', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Avoid the projectiles and SURVIVE!', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize + borderPadding*1.5, 'Move the mouse to control the player', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize - borderPadding*1.8, 'Get the gold coins to increase your score and to drive back the STORM!', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'The enemies might act according to the beat so TURN ON MUSIC!', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding*3.7, 'Avoid the projectiles and SURVIVE!', menuConfig).setOrigin(0.5);
         menuConfig.color = '#000';
         menuConfig.backgroundColor = '#ffffff';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding*7, 'Press SPACE to START', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding*8, 'Press SPACE to START', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding*12, 'Press -> for CREDITS', menuConfig).setOrigin(0.5);
 
         // // define keys
